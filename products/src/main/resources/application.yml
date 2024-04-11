@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: products
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://authserver:9000
+server:
+  port: 8090
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: "http://127.0.0.1:8070/eureka/"
+

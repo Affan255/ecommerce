@@ -94,15 +94,12 @@ public class AuthorizationServerConfig {
   public RegisteredClientRepository registeredClientRepository() {
     RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
         .clientId("api-client")
-        .clientSecret("secret")
         .clientSecret(passwordEncoder.encode("secret"))
         .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
         .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
         .authorizationGrantType(AuthorizationGrantType.PASSWORD)
         .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-        .redirectUri("http://127.0.0.1:8080/login/oauth2/code/api-client-oidc")
-        .redirectUri("http://127.0.0.1:8080/authorized")
-        .scope(OidcScopes.OPENID)
+        .redirectUri("https://oauth.pstmn.io/v1/callback")
         .scope("api.read")
         .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
         .build();
