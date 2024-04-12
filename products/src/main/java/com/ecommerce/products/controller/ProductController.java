@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 
-  @GetMapping("/api/products")
+  @GetMapping("")
   public String getAllProducts() {
     return "Shirt, Headphone, Mobile";
   }
