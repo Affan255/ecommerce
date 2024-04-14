@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -26,7 +27,10 @@ public class WebSecurityConfig {
   @Bean
   public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity httpSecurity) throws Exception {
     httpSecurity
-        .authorizeExchange((authorize) -> authorize.pathMatchers("/products/api/products/**").hasRole("user")
+        .authorizeExchange((authorize) -> authorize
+            .pathMatchers(HttpMethod.POST,"/ecom/products/**").hasRole("admin")
+            .pathMatchers(HttpMethod.PUT, "/ecom/products/**").hasRole("admin")
+            .pathMatchers(HttpMethod.DELETE, "/ecom/products/**").hasRole("admin")
             .anyExchange().permitAll())
         .oauth2ResourceServer(oAuth2ResourceServerSpec -> oAuth2ResourceServerSpec.jwt(jwtSpec -> jwtSpec.jwtAuthenticationConverter(grantedAuthoritiesExtractor())));
     httpSecurity.csrf(ServerHttpSecurity.CsrfSpec :: disable)

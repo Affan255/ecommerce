@@ -16,7 +16,7 @@ public class GatewayserverApplication {
 	@Bean
 	public RouteLocator ecommerceAppRouteConfig(RouteLocatorBuilder builder){
 		return builder.routes()
-				.route(p -> p.path("/ecom/products")
+				.route(p -> p.path("/ecom/products/**")
 						.filters(f -> f.rewritePath("/ecom/products/(?<segment>.*)","/${segment}"))
 						.uri("lb://PRODUCTS"))
 				.build();
