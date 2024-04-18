@@ -19,6 +19,9 @@ public class GatewayserverApplication {
 				.route(p -> p.path("/ecom/products/**")
 						.filters(f -> f.rewritePath("/ecom/products/(?<segment>.*)","/${segment}"))
 						.uri("lb://PRODUCTS"))
+				.route(p -> p.path("/ecom/cart/**")
+						.filters(f -> f.rewritePath("/ecom/cart/(?<segment>.*)","/${segment}"))
+						.uri("lb://CART"))
 				.build();
 	}
 }

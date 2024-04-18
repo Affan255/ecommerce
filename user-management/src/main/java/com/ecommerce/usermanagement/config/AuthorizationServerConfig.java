@@ -67,12 +67,12 @@ public class AuthorizationServerConfig {
     http
         // Redirect to the login page when not authenticated from the
         // authorization endpoint
-        .exceptionHandling((exceptions) -> exceptions
-            .defaultAuthenticationEntryPointFor(
-                new LoginUrlAuthenticationEntryPoint("/login"),
-                new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
-            )
-        )
+//        .exceptionHandling((exceptions) -> exceptions
+//            .defaultAuthenticationEntryPointFor(
+//                new LoginUrlAuthenticationEntryPoint("/login"),
+//                new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
+//            )
+//        )
         // Accept access tokens for User Info and/or Client Registration
         .oauth2ResourceServer((resourceServer) -> resourceServer
             .jwt(Customizer.withDefaults()));

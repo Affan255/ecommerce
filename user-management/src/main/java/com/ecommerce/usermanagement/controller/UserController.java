@@ -1,6 +1,7 @@
 package com.ecommerce.usermanagement.controller;
 
 import com.ecommerce.usermanagement.dto.UserDto;
+import com.ecommerce.usermanagement.exception.CartCreationException;
 import com.ecommerce.usermanagement.exception.UserEmailAlreadyExistsException;
 import com.ecommerce.usermanagement.models.User;
 import com.ecommerce.usermanagement.service.UserService;
@@ -17,7 +18,7 @@ public class UserController {
   private UserService userService;
 
   @PostMapping(value = "/create")
-  public ResponseEntity<User> addUser(@RequestBody UserDto userDto) throws UserEmailAlreadyExistsException {
+  public ResponseEntity<User> addUser(@RequestBody UserDto userDto) throws UserEmailAlreadyExistsException, CartCreationException {
     User user = userService.addUser(userDto);
     return ResponseEntity.ok()
         .body(user);
